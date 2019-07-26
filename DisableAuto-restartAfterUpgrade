@@ -1,0 +1,12 @@
+Get-ScheduledTask -TaskName reboot | Disable-ScheduledTask
+
+New-Item -Path Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DriverSearching
+New-Item -Path Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate
+New-ItemProperty -Path Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate `
+    -Name  ExcludeWUDriversInQualityUpdate `
+    -PropertyType DWORD `
+    -Value 1 
+New-ItemProperty -Path Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DriverSearching `
+    -Name  DriverSearching `
+    -PropertyType DWORD `
+    -Value 0 
